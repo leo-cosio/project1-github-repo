@@ -7,6 +7,8 @@ class Game {
 
     this.drawIntervalId = undefined;
     this.fps = FPS;
+
+    this.snake = new Snake(this.ctx);
   }
 
   start() {
@@ -19,7 +21,12 @@ class Game {
     }
   }
 
-  clear() {}
+  clear() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   move() {}
-  draw() {}
+  draw() {
+    this.snake.draw();
+  }
 }
