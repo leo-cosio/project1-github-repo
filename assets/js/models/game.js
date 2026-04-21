@@ -17,15 +17,22 @@ class Game {
         this.clear();
         this.move();
         this.draw();
-      }, this.FPS);
+      }, this.fps);
     }
+  }
+
+  stop() {
+    clearInterval(this.drawIntervalId);
+    this.drawIntervalId = undefined;
   }
 
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  move() {}
+  move() {
+    this.snake.move();
+  }
   draw() {
     this.snake.draw();
   }

@@ -8,3 +8,6 @@ const FIRST_APPLE_Y = 600;
 
 const SNAKE_H = 25;
 const SNAKE_W = 25;
+const SNAKE_START_X = 500;
+const SNAKE_START_Y = 375;
+const SNAKE_MOVE_FREQ = 60;
