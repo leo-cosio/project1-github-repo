@@ -1,6 +1,8 @@
 class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById("main-canvas");
+    this.canvas.width = CANVAS_WIDTH;
+    this.canvas.height = CANVAS_HEIGHT;
     this.ctx = this.canvas.getContext("2d");
 
     this.drawIntervalId = undefined;

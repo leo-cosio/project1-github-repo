@@ -1,0 +1,35 @@
+/* 
+  Palette Colors
+
+  #454040
+  #605B51
+  #D8D365
+  #E6F082
+*/
+
+html {
+  height: 100%;
+  width: 100%;
+
+  background-color: #454040;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 10px solid #605B51;
+  background-color: #D8D365;
+}
+
