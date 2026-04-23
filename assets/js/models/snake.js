@@ -1,5 +1,5 @@
 class Snake {
-  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "right") {
+  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "down") {
     this.ctx = ctx;
 
     this.x = x;

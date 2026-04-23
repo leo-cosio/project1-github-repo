@@ -31,12 +31,30 @@ class Game {
     this.drawIntervalId = undefined;
   }
 
+  checkBounds() {
+    switch (this.snake.x) {
+      case CANVAS_WIDTH:
+      case this.snake.x < 0:
+        this.snake.x -= SNAKE_W;
+        this.stop();
+        break;
+    }
+    switch (this.snake.y) {
+      case CANVAS_HEIGHT:
+      case this.snake.y < 0:
+        this.snake.y -= SNAKE_H;
+        this.stop();
+        break;
+    }
+  }
+
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   move() {
     this.snake.move();
+    this.checkBounds();
   }
   draw() {
     this.snake.draw();
