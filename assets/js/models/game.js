@@ -32,23 +32,23 @@ class Game {
   }
 
   checkBounds() {
-    switch (this.snake.x) {
+    switch (this.snake.body[0][0]) {
       case CANVAS_WIDTH:
-        this.snake.x -= SNAKE_W;
+        this.snake.body[0][0] -= SNAKE_W;
         this.stop();
         break;
       case -SNAKE_W:
-        this.snake.x += SNAKE_W;
+        this.snake.body[0][0] += SNAKE_W;
         this.stop();
         break;
     }
-    switch (this.snake.y) {
+    switch (this.snake.body[0][1]) {
       case CANVAS_HEIGHT:
-        this.snake.y -= SNAKE_H;
+        this.snake.body[0][1] -= SNAKE_H;
         this.stop();
         break;
       case -SNAKE_H:
-        this.snake.y += SNAKE_H;
+        this.snake.body[0][1] += SNAKE_H;
         this.stop();
         break;
     }
