@@ -13,12 +13,17 @@ class Game {
 
   start() {
     if (!this.drawIntervalId) {
+      this.setupListeners();
       this.drawIntervalId = setInterval(() => {
         this.clear();
         this.move();
         this.draw();
       }, this.fps);
     }
+  }
+
+  setupListeners() {
+    addEventListener("keydown", (event) => this.snake.onKeyEvent(event));
   }
 
   stop() {

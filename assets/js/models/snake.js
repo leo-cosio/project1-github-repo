@@ -1,5 +1,5 @@
 class Snake {
-  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "down") {
+  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "right") {
     this.ctx = ctx;
 
     this.x = x;
@@ -17,28 +17,61 @@ class Snake {
     this.drawCount++;
   }
 
+  // Change Direction
+  onKeyEvent(event) {
+    switch (event.key) {
+      case "ArrowUp":
+      case "w":
+        if (this.direction !== "down") {
+          this.direction = "up";
+        }
+        break;
+
+      case "ArrowLeft":
+      case "a":
+        if (this.direction !== "right") {
+          this.direction = "left";
+        }
+        break;
+
+      case "ArrowDown":
+      case "s":
+        if (this.direction !== "up") {
+          this.direction = "down";
+        }
+        break;
+
+      case "ArrowRight":
+      case "d":
+        if (this.direction !== "left") {
+          this.direction = "right";
+        }
+        break;
+    }
+  }
+
   move() {
     switch (this.direction) {
       case "right":
-        if (this.drawCount >= SNAKE_MOVE_FREQ && this.direction != "left") {
+        if (this.drawCount >= SNAKE_MOVE_FREQ) {
           this.x += 25;
           this.drawCount = 0;
         }
         break;
       case "left":
-        if (this.drawCount >= SNAKE_MOVE_FREQ && this.direction != "right") {
+        if (this.drawCount >= SNAKE_MOVE_FREQ) {
           this.x -= 25;
           this.drawCount = 0;
         }
         break;
       case "up":
-        if (this.drawCount >= SNAKE_MOVE_FREQ && this.direction != "down") {
+        if (this.drawCount >= SNAKE_MOVE_FREQ) {
           this.y -= 25;
           this.drawCount = 0;
         }
         break;
       case "down":
-        if (this.drawCount >= SNAKE_MOVE_FREQ && this.direction != "up") {
+        if (this.drawCount >= SNAKE_MOVE_FREQ) {
           this.y += 25;
           this.drawCount = 0;
         }
