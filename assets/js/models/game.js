@@ -34,15 +34,21 @@ class Game {
   checkBounds() {
     switch (this.snake.x) {
       case CANVAS_WIDTH:
-      case this.snake.x < 0:
         this.snake.x -= SNAKE_W;
+        this.stop();
+        break;
+      case -SNAKE_W:
+        this.snake.x += SNAKE_W;
         this.stop();
         break;
     }
     switch (this.snake.y) {
       case CANVAS_HEIGHT:
-      case this.snake.y < 0:
         this.snake.y -= SNAKE_H;
+        this.stop();
+        break;
+      case -SNAKE_H:
+        this.snake.y += SNAKE_H;
         this.stop();
         break;
     }
