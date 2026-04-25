@@ -6,6 +6,7 @@ class Snake {
     this.y = y;
 
     this.direction = direction;
+    this.canMove = true;
 
     this.w = SNAKE_W;
     this.h = SNAKE_H;
@@ -19,17 +20,7 @@ class Snake {
 
     this.drawCount = 0;
   }
-  /* 
-  eatApple() {
-    this.body.push(
-      new SnakeBlock(
-        this.ctx,
-        this.body[body.length - 1][0],
-        this.body[body.length - 1][1],
-      ),
-    );
-  }
- */
+
   draw() {
     this.body.forEach((block) => {
       this.ctx.fillStyle = "#454040";
@@ -39,6 +30,8 @@ class Snake {
   }
 
   onKeyEvent(event) {
+    if (!this.canMove) return;
+
     switch (event.key) {
       case "ArrowUp":
       case "W":
@@ -72,6 +65,8 @@ class Snake {
         }
         break;
     }
+
+    this.canMove = false;
   }
 
   move() {
@@ -85,6 +80,7 @@ class Snake {
           }
           this.body[0][0] += 25;
           this.drawCount = 0;
+          this.canMove = true;
         }
         break;
       case "left":
@@ -96,6 +92,7 @@ class Snake {
           }
           this.body[0][0] -= 25;
           this.drawCount = 0;
+          this.canMove = true;
         }
         break;
       case "up":
@@ -107,6 +104,7 @@ class Snake {
           }
           this.body[0][1] -= 25;
           this.drawCount = 0;
+          this.canMove = true;
         }
         break;
       case "down":
@@ -118,6 +116,7 @@ class Snake {
           }
           this.body[0][1] += 25;
           this.drawCount = 0;
+          this.canMove = true;
         }
         break;
     }

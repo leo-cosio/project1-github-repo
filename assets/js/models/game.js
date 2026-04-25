@@ -1,6 +1,6 @@
 class Game {
   constructor(canvasId) {
-    this.canvas = document.getElementById("main-canvas");
+    this.canvas = document.getElementById(canvasId);
     this.canvas.width = CANVAS_WIDTH;
     this.canvas.height = CANVAS_HEIGHT;
     this.ctx = this.canvas.getContext("2d");
@@ -11,11 +11,14 @@ class Game {
     this.snake = new Snake(this.ctx);
 
     this.apple = new Apple(this.ctx);
+
+    this.score = 0;
+
+    this.setupListeners();
   }
 
   start() {
     if (!this.drawIntervalId) {
-      this.setupListeners();
       this.drawIntervalId = setInterval(() => {
         this.clear();
         this.move();
@@ -23,20 +26,43 @@ class Game {
       }, this.fps);
     }
   }
-
-  setupListeners() {
-    addEventListener("keydown", (event) => this.snake.onKeyEvent(event));
-  }
-
   stop() {
     clearInterval(this.drawIntervalId);
     this.drawIntervalId = undefined;
   }
 
+  setupListeners() {
+    addEventListener("keydown", (event) => this.snake.onKeyEvent(event));
+  }
+
   checkBounds(snakePreviousState) {
+    // Check if apple is eaten
+    if (
+      this.snake.body[0][0] === this.apple.x &&
+      this.snake.body[0][1] === this.apple.y
+    ) {
+      this.apple.newApplePos();
+      this.snake.body.push([
+        snakePreviousState[snakePreviousState.length - 1][0],
+        snakePreviousState[snakePreviousState.length - 1][1],
+      ]);
+      this.score++;
+      console.log(this.score);
+    }
+
+    if (this.apple.x === CANVAS_WIDTH || this.apple.y === CANVAS_HEIGHT) {
+      this.apple.newApplePos();
+    }
+
     for (let i = 1; i < this.snake.body.length; i++) {
       const block = this.snake.body[i];
 
+      // Check if apple spawns in body
+      if (block[0] === this.apple.x && block[1] === this.apple.y) {
+        this.apple.newApplePos();
+      }
+
+      // Check if snake collides with itself, it doesn't go through it before game over
       if (
         this.snake.body[0][0] === block[0] &&
         this.snake.body[0][1] === block[1]
