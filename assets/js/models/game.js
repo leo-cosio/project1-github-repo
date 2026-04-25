@@ -12,6 +12,7 @@ class Game {
 
     this.apple = new Apple(this.ctx);
 
+    this.scoreHtml = document.getElementById("score");
     this.score = 0;
 
     this.setupListeners();
@@ -47,6 +48,7 @@ class Game {
         snakePreviousState[snakePreviousState.length - 1][1],
       ]);
       this.score++;
+      this.scoreHtml.innerText = `Score: ${this.score}`;
       console.log(this.score);
     }
 
