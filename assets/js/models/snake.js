@@ -15,9 +15,6 @@ class Snake {
       [x, y - SNAKE_H],
       [x, y - SNAKE_H * 2],
       [x, y - SNAKE_H * 3],
-      [x, y - SNAKE_H * 4],
-      [x, y - SNAKE_H * 5],
-      [x, y - SNAKE_H * 6],
     ];
 
     this.drawCount = 0;
@@ -41,10 +38,10 @@ class Snake {
     this.drawCount++;
   }
 
-  // Change Direction
   onKeyEvent(event) {
     switch (event.key) {
       case "ArrowUp":
+      case "W":
       case "w":
         if (this.direction !== "down") {
           this.direction = "up";
@@ -52,6 +49,7 @@ class Snake {
         break;
 
       case "ArrowLeft":
+      case "A":
       case "a":
         if (this.direction !== "right") {
           this.direction = "left";
@@ -59,6 +57,7 @@ class Snake {
         break;
 
       case "ArrowDown":
+      case "S":
       case "s":
         if (this.direction !== "up") {
           this.direction = "down";
@@ -66,6 +65,7 @@ class Snake {
         break;
 
       case "ArrowRight":
+      case "D":
       case "d":
         if (this.direction !== "left") {
           this.direction = "right";

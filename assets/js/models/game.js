@@ -9,6 +9,8 @@ class Game {
     this.fps = FPS;
 
     this.snake = new Snake(this.ctx);
+
+    this.apple = new Apple(this.ctx);
   }
 
   start() {
@@ -69,7 +71,6 @@ class Game {
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
-
   move() {
     const snakePreviousState = this.snake.body.map((block) => block.slice());
 
@@ -77,6 +78,7 @@ class Game {
     this.checkBounds(snakePreviousState);
   }
   draw() {
+    this.apple.draw();
     this.snake.draw();
   }
 }

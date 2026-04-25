@@ -6,8 +6,11 @@ const CANVAS_HEIGHT = 750;
 const FIRST_APPLE_X = 150;
 const FIRST_APPLE_Y = 600;
 
-const SNAKE_H = 25;
 const SNAKE_W = 25;
+const SNAKE_H = 25;
 const SNAKE_START_X = 500;
 const SNAKE_START_Y = 375;
 const SNAKE_MOVE_FREQ = 10;
+
+const GRID_WIDTH = CANVAS_WIDTH / SNAKE_W;
+const GRID_HEIGHT = CANVAS_HEIGHT / SNAKE_H;
