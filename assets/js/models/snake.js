@@ -1,5 +1,5 @@
 class Snake {
-  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "left") {
+  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "down") {
     this.ctx = ctx;
 
     this.x = x;
@@ -14,6 +14,10 @@ class Snake {
       [x, y],
       [x, y - SNAKE_H],
       [x, y - SNAKE_H * 2],
+      [x, y - SNAKE_H * 3],
+      [x, y - SNAKE_H * 4],
+      [x, y - SNAKE_H * 5],
+      [x, y - SNAKE_H * 6],
     ];
 
     this.drawCount = 0;
@@ -31,6 +35,7 @@ class Snake {
  */
   draw() {
     this.body.forEach((block) => {
+      this.ctx.fillStyle = "#454040";
       this.ctx.fillRect(block[0], block[1], this.w, this.h);
     });
     this.drawCount++;
@@ -73,24 +78,44 @@ class Snake {
     switch (this.direction) {
       case "right":
         if (this.drawCount >= SNAKE_MOVE_FREQ) {
+          for (let i = this.body.length - 1; i >= 1; i--) {
+            const block = this.body[i];
+            this.body[i][0] = this.body[i - 1][0];
+            this.body[i][1] = this.body[i - 1][1];
+          }
           this.body[0][0] += 25;
           this.drawCount = 0;
         }
         break;
       case "left":
         if (this.drawCount >= SNAKE_MOVE_FREQ) {
+          for (let i = this.body.length - 1; i >= 1; i--) {
+            const block = this.body[i];
+            this.body[i][0] = this.body[i - 1][0];
+            this.body[i][1] = this.body[i - 1][1];
+          }
           this.body[0][0] -= 25;
           this.drawCount = 0;
         }
         break;
       case "up":
         if (this.drawCount >= SNAKE_MOVE_FREQ) {
+          for (let i = this.body.length - 1; i >= 1; i--) {
+            const block = this.body[i];
+            this.body[i][0] = this.body[i - 1][0];
+            this.body[i][1] = this.body[i - 1][1];
+          }
           this.body[0][1] -= 25;
           this.drawCount = 0;
         }
         break;
       case "down":
         if (this.drawCount >= SNAKE_MOVE_FREQ) {
+          for (let i = this.body.length - 1; i >= 1; i--) {
+            const block = this.body[i];
+            this.body[i][0] = this.body[i - 1][0];
+            this.body[i][1] = this.body[i - 1][1];
+          }
           this.body[0][1] += 25;
           this.drawCount = 0;
         }
