@@ -14,6 +14,7 @@ class Game {
 
     this.scoreHtml = document.getElementById("score");
     this.score = 0;
+    this.highScore = this.loadHighScore();
 
     this.setupListeners();
   }
@@ -49,7 +50,6 @@ class Game {
       ]);
       this.score++;
       this.scoreHtml.innerText = `Score: ${this.score}`;
-      console.log(this.score);
     }
 
     if (this.apple.x === CANVAS_WIDTH || this.apple.y === CANVAS_HEIGHT) {
@@ -70,29 +70,53 @@ class Game {
         this.snake.body[0][1] === block[1]
       ) {
         this.snake.body = snakePreviousState;
-        this.stop();
+        this.gameOver();
       }
     }
 
     switch (this.snake.body[0][0]) {
       case CANVAS_WIDTH:
         this.snake.body = snakePreviousState;
-        this.stop();
+        this.gameOver();
         break;
       case -SNAKE_W:
         this.snake.body = snakePreviousState;
-        this.stop();
+        this.gameOver();
         break;
     }
     switch (this.snake.body[0][1]) {
       case CANVAS_HEIGHT:
         this.snake.body = snakePreviousState;
-        this.stop();
+        this.gameOver();
         break;
       case -SNAKE_H:
         this.snake.body = snakePreviousState;
-        this.stop();
+        this.gameOver();
         break;
+    }
+  }
+
+  loadHighScore() {
+    const stored = localStorage.getItem("high-score");
+    const highScoreDom = document.getElementById("high-score");
+
+    if (stored === null) {
+      highScoreDom.innerText = "High Score: 0";
+      return 0;
+    }
+
+    highScoreDom.innerText = `High Score: ${Number(stored)}`;
+    return Number(stored);
+  }
+
+  gameOver() {
+    this.stop();
+    const highScoreDom = document.getElementById("high-score");
+
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      localStorage.setItem("high-score", this.score);
+      highScoreDom.innerText = `High Score: ${this.highScore}`;
     }
   }
 

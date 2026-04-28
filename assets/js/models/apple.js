@@ -7,7 +7,6 @@ class Apple {
   }
 
   newApplePos() {
-    console.log("changed");
     this.x = Math.floor(Math.random() * GRID_WIDTH + 1) * SNAKE_W;
     this.y = Math.floor(Math.random() * GRID_HEIGHT + 1) * SNAKE_H;
   }

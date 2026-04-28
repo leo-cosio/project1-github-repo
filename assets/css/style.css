@@ -35,7 +35,7 @@ canvas {
   background-color: #D8D365;
 }
 
-#score {
+#score, #high-score {
   font-family: sans-serif;
   color: white;
   font-weight: bold;
