@@ -1,5 +1,12 @@
 class Snake {
-  constructor(ctx, x = SNAKE_START_X, y = SNAKE_START_Y, direction = "down") {
+  constructor(
+    ctx,
+    x = SNAKE_START_X,
+    y = SNAKE_START_Y,
+    w = SNAKE_W,
+    h = SNAKE_H,
+    direction = "down",
+  ) {
     this.ctx = ctx;
 
     this.x = x;
@@ -8,13 +15,13 @@ class Snake {
     this.direction = direction;
     this.canMove = true;
 
-    this.w = SNAKE_W;
-    this.h = SNAKE_H;
+    this.w = w;
+    this.h = h;
 
     this.body = [
       [x, y],
-      [x, y - SNAKE_H],
-      [x, y - SNAKE_H * 2],
+      [x, y - this.h],
+      [x, y - this.h * 2],
     ];
 
     this.drawCount = 0;

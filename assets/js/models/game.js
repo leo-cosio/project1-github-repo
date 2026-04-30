@@ -9,10 +9,6 @@ class Game {
     this.drawIntervalId = undefined;
     this.fps = FPS;
 
-    this.snake = new Snake(this.ctx);
-
-    this.apple = new Apple(this.ctx);
-
     this.scoreHtml = document.getElementById("score");
     this.score = 0;
     this.highScore = this.loadHighScore();
@@ -27,20 +23,30 @@ class Game {
         this.canvas.height = DIFFICULTIES.easy.canvasHeight;
         CANVAS_WIDTH = DIFFICULTIES.easy.canvasWidth;
         CANVAS_HEIGHT = DIFFICULTIES.easy.canvasHeight;
+        SNAKE_MOVE_FREQ = DIFFICULTIES.easy.snakeSpeed;
         break;
       case "normal":
         this.canvas.width = DIFFICULTIES.normal.canvasWidth;
         this.canvas.height = DIFFICULTIES.normal.canvasHeight;
         CANVAS_WIDTH = DIFFICULTIES.normal.canvasWidth;
         CANVAS_HEIGHT = DIFFICULTIES.normal.canvasHeight;
+        SNAKE_MOVE_FREQ = DIFFICULTIES.normal.snakeSpeed;
         break;
       case "hard":
         this.canvas.width = DIFFICULTIES.hard.canvasWidth;
         this.canvas.height = DIFFICULTIES.hard.canvasHeight;
         CANVAS_WIDTH = DIFFICULTIES.hard.canvasWidth;
         CANVAS_HEIGHT = DIFFICULTIES.hard.canvasHeight;
+        SNAKE_MOVE_FREQ = DIFFICULTIES.hard.snakeSpeed;
         break;
     }
+
+    SNAKE_START_X = CANVAS_WIDTH / 2;
+    SNAKE_START_Y = CANVAS_HEIGHT / 2;
+
+    this.snake = new Snake(this.ctx);
+
+    this.apple = new Apple(this.ctx);
 
     this.gameMenu.style.display = "none";
     this.game.style.display = "flex";
@@ -49,7 +55,6 @@ class Game {
         this.clear();
         this.move();
         this.draw();
-        console.debug("");
       }, this.fps);
     }
   }

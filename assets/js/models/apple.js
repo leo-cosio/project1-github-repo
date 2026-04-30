@@ -1,14 +1,19 @@
 class Apple {
-  constructor(ctx, x, y) {
+  constructor(ctx) {
     this.ctx = ctx;
 
-    this.x = Math.floor(Math.random() * GRID_WIDTH + 1) * SNAKE_W;
-    this.y = Math.floor(Math.random() * GRID_HEIGHT + 1) * SNAKE_H;
+    this.x = 0;
+    this.y = 0;
+
+    this.gridWidth = CANVAS_WIDTH / SNAKE_W;
+    this.gridHeight = CANVAS_HEIGHT / SNAKE_H;
+
+    this.newApplePos();
   }
 
   newApplePos() {
-    this.x = Math.floor(Math.random() * GRID_WIDTH + 1) * SNAKE_W;
-    this.y = Math.floor(Math.random() * GRID_HEIGHT + 1) * SNAKE_H;
+    this.x = Math.floor(Math.random() * this.gridWidth + 1) * SNAKE_W;
+    this.y = Math.floor(Math.random() * this.gridHeight + 1) * SNAKE_H;
   }
 
   draw() {
