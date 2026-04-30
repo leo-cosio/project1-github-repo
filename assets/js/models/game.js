@@ -1,9 +1,10 @@
 class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
-    this.canvas.width = CANVAS_WIDTH;
-    this.canvas.height = CANVAS_HEIGHT;
     this.ctx = this.canvas.getContext("2d");
+
+    this.game = document.getElementById("game");
+    this.gameMenu = document.getElementById("game-menu");
 
     this.drawIntervalId = undefined;
     this.fps = FPS;
@@ -19,12 +20,36 @@ class Game {
     this.setupListeners();
   }
 
-  start() {
+  start(difficulty) {
+    switch (difficulty) {
+      case "easy":
+        this.canvas.width = DIFFICULTIES.easy.canvasWidth;
+        this.canvas.height = DIFFICULTIES.easy.canvasHeight;
+        CANVAS_WIDTH = DIFFICULTIES.easy.canvasWidth;
+        CANVAS_HEIGHT = DIFFICULTIES.easy.canvasHeight;
+        break;
+      case "normal":
+        this.canvas.width = DIFFICULTIES.normal.canvasWidth;
+        this.canvas.height = DIFFICULTIES.normal.canvasHeight;
+        CANVAS_WIDTH = DIFFICULTIES.normal.canvasWidth;
+        CANVAS_HEIGHT = DIFFICULTIES.normal.canvasHeight;
+        break;
+      case "hard":
+        this.canvas.width = DIFFICULTIES.hard.canvasWidth;
+        this.canvas.height = DIFFICULTIES.hard.canvasHeight;
+        CANVAS_WIDTH = DIFFICULTIES.hard.canvasWidth;
+        CANVAS_HEIGHT = DIFFICULTIES.hard.canvasHeight;
+        break;
+    }
+
+    this.gameMenu.style.display = "none";
+    this.game.style.display = "flex";
     if (!this.drawIntervalId) {
       this.drawIntervalId = setInterval(() => {
         this.clear();
         this.move();
         this.draw();
+        console.debug("");
       }, this.fps);
     }
   }

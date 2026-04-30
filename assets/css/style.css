@@ -13,6 +13,7 @@ html {
   width: 100%;
 
   background-color: #454040;
+  font-family: sans-serif;
 }
 
 body {
@@ -21,24 +22,39 @@ body {
   margin: 0;
 }
 
-div {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 canvas {
   border: 10px solid #605B51;
   background-color: #D8D365;
 }
 
+#game {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
 #score, #high-score {
-  font-family: sans-serif;
   color: white;
   font-weight: bold;
   font-size: 2rem;
 }
 
+#game-menu {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#game-menu > h1 {
+  color: #D8D365;
+  font-size: 4rem;
+}

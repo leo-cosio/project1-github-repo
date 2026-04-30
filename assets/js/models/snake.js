@@ -15,7 +15,6 @@ class Snake {
       [x, y],
       [x, y - SNAKE_H],
       [x, y - SNAKE_H * 2],
-      [x, y - SNAKE_H * 3],
     ];
 
     this.drawCount = 0;
